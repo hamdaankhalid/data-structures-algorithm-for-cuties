@@ -21,6 +21,5 @@ function longestCommonPrefix(strs: string[]): string {
         common += match;
         counter++
     }
-    
     return common;
 };
