@@ -44,11 +44,8 @@ function getPotentialStateAdditions(state: number[], n: number){
     for(let i = 0; i < n; i++){
         let row = i; //for readability
         let col = state[i];
-        candidates = candidates.filter(e => e !== col);
         let dist = position - row;
-        
-        candidates = candidates.filter(e => e !== col + dist);
-        candidates = candidates.filter(e => e !== col - dist);
+        candidates = candidates.filter(e => ((e !== col) && (e !== col + dist) && (e !== col - dist)));
     }
     
     return candidates;
