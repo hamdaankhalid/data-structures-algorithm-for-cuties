@@ -29,19 +29,16 @@ function buildTree(preorder: number[], inorder: number[]): TreeNode | null {
     if(inorder.length*preorder.length === 0){
         return null;
     }
-    //console.log(preorder)
 
     const val = preorder.shift();
-    
+
     const root = new TreeNode(val);
-    
+
     const leftOfRoot = inorder.slice(0, inorder.indexOf(val));
     const rightOfRoot = inorder.slice(inorder.indexOf(val) + 1, inorder.length);
-    
-    //console.log(val, leftOfRoot, rightOfRoot);
-    
+
     root.left = buildTree(preorder, leftOfRoot);
     root.right = buildTree(preorder, rightOfRoot);
-    
+
     return root;
 };
