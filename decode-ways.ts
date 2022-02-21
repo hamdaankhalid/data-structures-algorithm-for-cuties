@@ -11,35 +11,47 @@
     "KJF" with the grouping (11 10 6)
 */
 
-
-function numDecodings(s: string, memo: Map<any, any>=new Map()): number {
+function numDecodings(s: string, memo: Map<any, any> = new Map()): number {
     // base case
-    // if(s in mem)
+    
     if(s === ""){
         return 1;
     }
     
+    // memocase
+    if(s in memo) {
+        return memo[s];
+    }
+    
+    // edge case
     if(s[0]==='0'){
         return 0;
     }
     
-    if(s in memo){
-        return memo[s];
-    }
-    
     let numWays = 0;
-    let counter = 0;
     
-    while(
-        (counter < s.length) &&
-        (Number(s.slice(0, counter+1)) < 27) &&
-        (Number(s.slice(0, counter+1)) > 0) 
-    ){
-      numWays += numDecodings(s.slice(counter+1), memo);
-      counter+=1;
+    for (let i = 0; i < s.length; i++) {
+            const selected = s.slice(0,i+1);
+            if(Number(selected)<=26) {
+                
+                numWays += numDecodings(s.slice(i+1), memo);
+                
+                memo[s] = numWays;
+            }
     }
-    memo[s] = numWays;
     
     return memo[s];
 };
+
+/* 
+logic 12
+12 can be broken into 1 2 or 12
+
+123 can be 1 2 3, 12 3, 1 23
+
+we can create a branch for each possibility
+                    1 2 3
+            [1] 23        [12] 3
+[1, 2]  3    [1, 23]        [12, 3]
+*/
 
