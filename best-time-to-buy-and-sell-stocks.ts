@@ -43,4 +43,3 @@ function maxProfit(prices: number[], bought: number | null = null, sold: number 
       //console.log(prices, sells)
       return Math.max(...sells);
   };
-  
