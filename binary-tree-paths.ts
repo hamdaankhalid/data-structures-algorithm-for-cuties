@@ -33,5 +33,4 @@ function recur(root: TreeNode | null, paths: string, result: string[]) {
     if(root.right) {
         recur(root.right, paths+"->", result);
     }
-    
 }
