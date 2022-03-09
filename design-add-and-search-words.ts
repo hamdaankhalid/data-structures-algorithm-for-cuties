@@ -47,7 +47,9 @@ class WordDictionary {
       const toMatch = word[0]; 
       const remainingWord = word.slice(1); 
 
-      
+      // once we hit wildcard we need to go down every possible path using dfs
+      // if we dfs on all paths and dont get any that are true then we return false
+      // since all posibilities from hereon will only return false.
       if (toMatch === "."){
           for (const [k,v] of Object.entries(node.nextUp)) {
               const path =this.dfs(remainingWord, v);
