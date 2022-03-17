@@ -13,3 +13,21 @@ function twoSum(nums: number[], target: number): number[] {
   }
   return output;
 };
+
+function twoSumAgain(nums: number[], target: number): number[] {
+    const map = {};
+    
+    for (let i = 0; i< nums.length;i++) {
+        const curr = nums[i]
+        const toSearch = target - curr;
+        
+        if ( toSearch in map ) {
+            return [i, map[toSearch]]
+        }
+        
+        map[curr] = i;
+        
+    }
+
+    return [-1, -1]
+};
