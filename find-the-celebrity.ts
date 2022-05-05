@@ -6,43 +6,62 @@
  */
 
 var solution = function(knows: any) {
-    
-  /**
-   find the A that is visted by everyone but visits nobody
-  */
-  return function(n: number): number {
-      let knowsAllPeopleSum = 0;
-      const iKnowsJ = {};
-      const jKnownByI = {};
-      
-      for(let i = 0; i < n; i++) {
-          for (let j = 0; j < n; j++) {
-              if (knows(i, j)) {
-                  if (i in iKnowsJ) {
-                      iKnowsJ[i] += 1;
-                  } else {
-                      iKnowsJ[i] = 1;
-                  }
-                  
-                  if (j in jKnownByI) {
-                      jKnownByI[j] += 1;
-                  } else {
-                      jKnownByI[j] = 1;
-                  }
-              }
-          }
-          knowsAllPeopleSum += i;
-      }
-      
-      for (let potential = 0; potential < n; potential++) {
-          const knownByEveryone = jKnownByI[potential] === n
-          const knowsNobody = iKnowsJ[potential] === 1;
-          if (knownByEveryone && knowsNobody) {
-              return potential;
-          }
-      }
-      
-      return -1;
-      
-  };
+    return function(n: number): number {
+        return new Solution(knows).solve(n);
+    };
 };
+
+class Solution {
+    private api: any;
+
+    constructor (knows: any) {
+        this.api = knows;
+    }
+
+    solve(n: number) {
+        // from n, find the i that knows nobody but everybody knows that i.
+        const iKnowsWho = {};
+        const knowsNoBody = new Set();
+        for (let i = 0; i < n; i++) { 
+            knowsNoBody.add(i);
+            iKnowsWho[i] = []
+        }
+        
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < n; j++) {
+                if (i === j) {
+                    iKnowsWho[i].push(i);
+                    continue
+                }
+                
+                if (!this.api(i, j)) {
+                    continue;
+                }
+                
+                knowsNoBody.delete(i);
+
+                if (i in iKnowsWho) {
+                    iKnowsWho[i].push(j)
+                }
+            }
+        }
+        
+        if (knowsNoBody.size === 0) {
+            return -1;
+        }
+        
+        const celebs = [];
+        //console.log(iKnowsWho, knowsNoBody);
+
+        const whoKnowsWho: number[][] = Array.from(Object.values(iKnowsWho)) as number[][];
+        //console.log(whoKnowsWho);
+        knowsNoBody.forEach((potential) => {
+            const everbodyKnowsPotential = whoKnowsWho.every((i) => i.includes(potential as number));
+           
+            if (everbodyKnowsPotential) {
+                celebs.push(potential);
+            }
+        });
+        return celebs[0] === undefined ? -1 : celebs[0];
+    }
+}
