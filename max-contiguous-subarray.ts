@@ -5,7 +5,6 @@ A subarray is a contiguous part of an array.
 */
 // DP TABLE MOTHERFUCLERS
 function maxSubArray(nums: number[]): number {
-    const maxes = [nums[0]];
     let runningMaxSumTill = nums[0];
     let maxSum = nums[0];
     
@@ -17,7 +16,6 @@ function maxSubArray(nums: number[]): number {
             runningMaxSumTill = potential;
         }
         maxSum = runningMaxSumTill < maxSum ? maxSum : runningMaxSumTill;
-        
     }
     
     return maxSum;
