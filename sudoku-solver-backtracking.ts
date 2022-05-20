@@ -17,10 +17,6 @@ function backTrackSolve(board: string[][]): boolean {
           }
           
           const validChoices = getValidChoices(board, row, col);
-          
-          if (validChoices.length === 0) {
-              return false;
-          }
 
           for (let choice of validChoices) {
               board[row][col] = choice;
