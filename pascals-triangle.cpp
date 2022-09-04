@@ -13,7 +13,6 @@ public:
                 parent[j][k] = childsFather[k-1] + childsFather[k];
             }
         }
-        
         return parent;
     }
 };
