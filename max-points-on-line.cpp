@@ -35,7 +35,10 @@ namespace
                     } else if (dy == 1 && dx == 1){
                         gcd = 1;
                     }else {
-                        gcd = __gcd(dy, dx);    
+                        if (dy > dx)
+                            gcd = compute_gcd(dy, dx);
+                        else:
+                            gcd = compute_gcd(dx, dy);
                     }
                                         
                     int gcd_normalized_dy = dy / gcd;
@@ -61,7 +64,14 @@ namespace
 
             return global_max_points;
         }
+        
+        int compute_gcd(int a, int b) {
+            if (a == b) {
+                return a;
+            }
 
+            return compute_gcd(b % a, a);
+        }
     
         pair<int, int> find_slope(vector<int> point_1, vector<int> point_2)
         {
