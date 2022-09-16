@@ -36,7 +36,6 @@ namespace MedianStream
         }
       }
       // this is a bottle neck because this is O(n)
-      // I could use a BST but then query will be O(log n)
       data.insert(data.begin() + l, num);
     }
 
