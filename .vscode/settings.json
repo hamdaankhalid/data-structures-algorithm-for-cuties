@@ -64,6 +64,20 @@
     "system_error": "cpp",
     "type_traits": "cpp",
     "typeinfo": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "__bits": "cpp",
+    "clocale": "cpp",
+    "compare": "cpp",
+    "concepts": "cpp",
+    "condition_variable": "cpp",
+    "numbers": "cpp",
+    "numeric": "cpp",
+    "random": "cpp",
+    "semaphore": "cpp",
+    "thread": "cpp",
+    "variant": "cpp",
+    "*.tcc": "cpp",
+    "memory_resource": "cpp",
+    "stop_token": "cpp"
   }
 }
