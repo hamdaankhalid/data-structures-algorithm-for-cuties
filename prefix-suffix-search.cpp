@@ -116,4 +116,3 @@ private:
  * WordFilter* obj = new WordFilter(words);
  * int param_1 = obj->f(pref,suff);
  */
- 
