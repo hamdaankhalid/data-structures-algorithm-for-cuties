@@ -50,3 +50,29 @@ public:
         return dp[n];
     }
 };
+
+class Solution3 {
+public:
+    int climbStairs(int n) {
+        if (n == 0) {
+            return 0;
+        }
+
+        if (n == 1) {
+            return 1;
+        }
+
+        int p = 1;
+        int q = 1;
+
+        for (int i = 2; i < n+1; i++) {
+            std::cout << p << ", " << q << std::endl;
+            int temp = p;
+            int temptwo = q;
+            p = q;
+            q = temp + temptwo;
+        }
+
+        return q;
+    }
+};
