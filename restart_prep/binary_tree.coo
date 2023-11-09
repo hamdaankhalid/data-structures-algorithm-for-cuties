@@ -1,0 +1,47 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    // pre order nlr
+    // inorder is lnr
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) { 
+      // inorder is how we figure who is left child and right child to the guy at the 
+      // head of preorder. This means we are at a leaf node
+      if (inorder.size() == 0) {
+        return nullptr;
+      }
+
+      // pop the left most in preorder since that is the root node val
+      int rootval = preorder.at(0);
+
+      preorder.erase(preorder.begin());
+
+      TreeNode* root_node = new TreeNode(rootval);
+
+      // find where the node is in the inorder. Everything to its left, and to its right
+      // will create left children, and right children respectively.
+      vector<int>::iterator root_iter_for_inorder = std::find(inorder.begin(), inorder.end(), rootval);
+
+      vector<int> left_of_root_val = {inorder.begin(), root_iter_for_inorder};
+
+      vector<int> right_of_root_val;
+      if (root_iter_for_inorder != inorder.end()) 
+        right_of_root_val = {root_iter_for_inorder + 1, inorder.end()};
+
+      root_node->left = buildTree(preorder, left_of_root_val);
+
+      if (root_iter_for_inorder != inorder.end()) 
+        root_node->right = buildTree(preorder, right_of_root_val);
+
+      return root_node;
+    }
+};
