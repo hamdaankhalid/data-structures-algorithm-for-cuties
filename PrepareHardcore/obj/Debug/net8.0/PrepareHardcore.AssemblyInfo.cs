@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PrepareHardcore")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+04d4317355504fd70ef12efeb4d41f830f32c747")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6068e9a30267a5802f8184c2f353b76fe4ca7a4f")]
 [assembly: System.Reflection.AssemblyProductAttribute("PrepareHardcore")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PrepareHardcore")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
